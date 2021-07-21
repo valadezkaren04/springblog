@@ -6,12 +6,12 @@
 </head>
 <body>
     <ul th:each="park : ${parks}">
-        <th:block th:if="${parks.isEmpty()}">
+<!--        <th:block th:if="${parks.isEmpty()}">-->
+        <th:block th:unless="${parks.isEmpty()}">
             <li th:text="${park.name}"></li>
         </th:block>
-       <li>Hello</li> <!-- this will be considered the else ; has to be outside of the block-->
-
-
+<!--        <li>Hello</li> this will be considered the else ; has to be outside of the block&ndash;&gt;-->
     </ul>
+
 </body>
 </html>
