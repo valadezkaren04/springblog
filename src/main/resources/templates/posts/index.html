@@ -5,5 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+    <ul th:each="post: ${posts}">
+        <li th:text="${post.title}"></li>
+        <li th:text="${post.body}"></li>
+    </ul>
 </body>
 </html>
