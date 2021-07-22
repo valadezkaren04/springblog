@@ -21,7 +21,7 @@ public class RollDiceController {
         model.addAttribute("randomNum", randomNum);
         model.addAttribute("checkingGuess", checkingGuess);
 
-        return "roll-dice-check";
+        return "roll-dice-check"; // gets connected with the html file
     }
 
 }
