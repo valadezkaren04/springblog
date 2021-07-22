@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head th:fragment="head (title)">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/master.css}" type="text/css" />
+    <link rel="icon" href="../static/favicon.ico" th:href="@{/favicon.ico}" type="image/x-icon" />
+    <title th:text="${title}"></title>
 </head>
 <body>
 </body>

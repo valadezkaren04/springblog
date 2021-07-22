@@ -12,6 +12,7 @@
     <p th:if="${checkingGuess}">You guessed it right!</p>
     <p th:if="${!checkingGuess}">Aww, sad :c, wrong guess... </p>
 
-
+    <footer th:replace="partials/footer :: footer"/>
+    <script th:replace="partials/scripts :: scripts"/>
 </body>
 </html>

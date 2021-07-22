@@ -5,5 +5,29 @@
     <title>Title</title>
 </head>
 <body>
+<footer th:fragment="footer" class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="darker-offwhite-text">One sec...</h5>
+                <p class="offwhite-text">Reminder: people like to read something meaningful...</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="darker-offwhite-text">Links</h5>
+                <ul>
+                    <li><a class="offwhite-text" href="/posts">All Posts</a></li>
+                    <li><a class="offwhite-text" href="/roll-dice">Dice Roll Guesser</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright indigo accent-3">
+        <div class="container indigo-text text-lighten-4">
+        </div>
+    </div>
+</footer>
+
+<script th:fragment="m-script" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script th:fragment="j-query" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
 </html>
