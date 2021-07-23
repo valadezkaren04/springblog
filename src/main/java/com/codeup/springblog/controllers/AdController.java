@@ -28,4 +28,10 @@ public class AdController {
         return "ads/show";
     }
 
-
+    @GetMapping("/ads/{title}")
+    public String viewOne(@PathVariable String title, Model model) {
+        Ad ad = adDao.findFirstByTitle(title);
+        model.addAttribute("ad", ad); // gets the information
+        return "ads/show";
+    }
+}
