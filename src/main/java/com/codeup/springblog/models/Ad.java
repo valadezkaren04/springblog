@@ -25,6 +25,11 @@ public class Ad {
         this.description = description;
     }
 
+    // empty constructor takes care of the red Ad
+    public Ad() {
+
+    }
+
     // getters and setters
     public long getId() {
         return id;

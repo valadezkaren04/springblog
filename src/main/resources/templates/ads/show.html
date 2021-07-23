@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="partials/styles.html  :: styles"></th:block>
+
+</head>
+<body>
+<th:block th:include="partials/navbar.html :: navbar"></th:block>
+<!--Top-->
+<div th:if="${ad}">
+    <h2 th:text="${ad.title}">title</h2>
+    <p th:text="${ad.description}">description</p>
+</div>
+
+<!--Bottom-->
+<th:block th:include="partials/scripts.html  :: bootstrap"></th:block>
+</body>
+</html>
