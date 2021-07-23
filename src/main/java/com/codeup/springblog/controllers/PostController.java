@@ -17,30 +17,41 @@ public class PostController {
         this.postRepo = postRepo;
     }
 
+    // shows the posts (viewing posts)
     @GetMapping("/posts")
     public String index(Model model) {
         model.addAttribute("posts", postRepo.findAll());
         return "posts/index";
     }
 
+    // finds a post by the ID
     @GetMapping("/posts/{id}")
     public String findById(@PathVariable long id, Model model) {
         model.addAttribute("post", postRepo.findById(id));
         return "posts/show";
     }
 
+    // deletes the posts
     @PostMapping("/posts/delete/{id}")
     public String deleteById(@PathVariable long id) {
         postRepo.deleteById(id);
-        return "redirect:/posts";
+        return "redirect:/posts"; // better practice to return to the individual post page
     }
 
+    @GetMapping("/posts/edit/{id}")
+    public String editThePost(@PathVariable long id, Model model) {
+        model.addAttribute("post", postRepo.findById(id));
+        return "post/edit";
+    }
+
+    // allows you to edit your post
     @PostMapping("/posts/edit/{id}")
-    public String postToEdit(@PathVariable long id, Model model) {
+    public String postToEdit(@PathVariable long id, Model model) { // needs model b.c needs id in order to edit
         model.addAttribute("post", postRepo.findById(id));
         return "posts/edit";
     }
 
+    // the post gets updated and displayed again
     @PostMapping("/posts/edit/update/{id}")
     public String editPost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
         Post updatedPost = postRepo.getById(id);

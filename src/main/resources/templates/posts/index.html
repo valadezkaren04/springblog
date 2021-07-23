@@ -2,17 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Post index</title>
+    <title>Viewing the posts</title>
 </head>
 <body>
 <h1></h1>
 
-<ul th:each="post: ${posts}">
+<div th:each="post: ${posts}">
     <th:block>
-        <li th:text="${post.title}"></li>
-        <li th:text="${post.body}"></li>
+        <h4 th:text="${post.title}"></h4>
+        <p th:text="${post.body}"></p>
         <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="POST">
-            <!--            <input hidden th:value="${post.id}">-->
+            <!-- <input hidden th:value="${post.id}"> -->
+            <!-- @ : access the directories and files -->
             <button type="submit">Delete</button>
         </form>
         <form th:action="@{/posts/edit/{id}(id=${post.id})}" method="POST">
@@ -22,6 +23,6 @@
         </form>
     </th:block>
 
-</ul>
+</div>
 </body>
 </html>
