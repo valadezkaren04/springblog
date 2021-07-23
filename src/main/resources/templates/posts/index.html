@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Post index</title>
 </head>
 <body>
-    <ul th:each="post: ${posts}">
+<h1>Here are all the posts</h1>
+
+<ul th:each="post: ${posts}">
+    <th:block>
         <li th:text="${post.title}"></li>
         <li th:text="${post.body}"></li>
-    </ul>
+        <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="POST">
+            <!--            <input hidden th:value="${post.id}">-->
+            <button type="submit">Delete</button>
+        </form>
+        <form th:action="@{/posts/edit/{id}(id=${post.id})}" method="POST">
+            <input hidden th:value="${post.title}" name="title">
+            <input hidden th:value="${post.body}" name="body">
+            <button type="submit">Edit</button>
+        </form>
+    </th:block>
+
+</ul>
 </body>
 </html>
