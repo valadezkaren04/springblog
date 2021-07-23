@@ -23,9 +23,9 @@ public class PostController {
         return "posts/index";
     }
 
-    @GetMapping("/posts/{n}")
-    public String findById(@PathVariable long n, Model model) {
-        model.addAttribute("post", postRepo.findById(n));
+    @GetMapping("/posts/{id}")
+    public String findById(@PathVariable long id, Model model) {
+        model.addAttribute("post", postRepo.findById(id));
         return "posts/show";
     }
 
