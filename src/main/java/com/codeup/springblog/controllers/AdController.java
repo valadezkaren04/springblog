@@ -32,6 +32,6 @@ public class AdController {
     public String viewOne(@PathVariable String title, Model model) {
         Ad ad = adDao.findFirstByTitle(title);
         model.addAttribute("ad", ad); // gets the information
-        return "ads/show"
+        return "ads/show";
     }
 }
