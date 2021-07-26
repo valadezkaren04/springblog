@@ -1,3 +1,5 @@
+package com.codeup.springblog.models;
+
 import javax.persistence.*;
 @Entity
 @Table(name = "ad_images")

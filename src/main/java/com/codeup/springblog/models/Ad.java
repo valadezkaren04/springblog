@@ -32,13 +32,6 @@ public class Ad {
         this.description = description;
     }
 
-    public Ad(long id, String title, String description, AdImage adImage) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.adImage = adImage;
-    }
-
     public Ad(long id, String title, String description, AdImage adImage, User user) {
         this.id = id;
         this.title = title;
