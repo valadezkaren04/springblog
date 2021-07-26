@@ -3,6 +3,7 @@ package com.codeup.springblog.models;
 import org.hibernate.annotations.Tables;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="ads") //creates table
@@ -24,6 +25,15 @@ public class Ad {
     @ManyToOne // binds the relations from OneToMany in user.java, making it a relationship
     @JoinColumn(name="user_id")
     private User user;
+
+    //driving force of ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "ads_categories",
+            joinColumns = {@JoinColumn(name = "ad_id")},
+            inverseJoinColumns =  {@JoinColumn(name = "categori_id")}
+    )
+    private List<Category> categories;
 
     // constructor
     public Ad(long id, String title, String description) {
