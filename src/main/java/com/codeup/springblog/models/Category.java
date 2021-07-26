@@ -15,4 +15,39 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     private List<Ad> ads;
+
+    // constructors
+    public Category() {
+    }
+
+    public Category(long id, String name, List<Ad> ads) {
+        this.id = id;
+        this.name = name;
+        this.ads = ads;
+    }
+
+    // getters and setters
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Ad> getAds() {
+        return ads;
+    }
+
+    public void setAds(List<Ad> ads) {
+        this.ads = ads;
+    }
 }

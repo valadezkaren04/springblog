@@ -28,3 +28,9 @@ VALUES ('Lorem ipsum dolor sit amet, ex pericula persequeris eam, quo quem saper
         'Use LOREM IPSUM To Make Someone Fall In Love With You'),
        ('Lorem ipsum dolor sit amet, ex pericula persequeris eam, quo quem saperet cu. Ne epicurei periculis nec. Nostrud fastidii eu vim.',
         'It''s All About LOREM IPSUM');
+
+INSERT INTO springblog_db.categories (name)
+VALUES ('lorem'), ('ipsum'), ('dolor'), ('sit'), ('amet');
+
+INSERT INTO springblog_db.ads_categories (ad_id, categori_id)
+VALUES (1,1), (2,2), (3,3), (4,4), (5,5);

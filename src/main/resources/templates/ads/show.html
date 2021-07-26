@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <th:block th:include="partials/styles.html  :: styles"></th:block>
+    <th:block th:replace="partials/styles.html  :: styles"></th:block>
 
 </head>
 <body>
@@ -13,9 +13,13 @@
 <div th:if="${ad}">
     <h2 th:text="${ad.title}">title</h2>
     <p th:text="${ad.description}">description</p>
+    <p th:text="${ad.user.username}"></p>
+    <span th:each="cat : ${ad.categories}">
+        | <span th:text="${cat.name}"></span>
+    </span>
 </div>
 
 <!--Bottom-->
-<th:block th:include="partials/scripts.html  :: bootstrap"></th:block>
+<th:block th:include="partials/scripts.html  :: scripts"></th:block>
 </body>
 </html>

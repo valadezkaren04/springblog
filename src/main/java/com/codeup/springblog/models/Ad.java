@@ -35,7 +35,7 @@ public class Ad {
     )
     private List<Category> categories;
 
-    // constructor
+    // constructors
     public Ad(long id, String title, String description) {
         this.id = id;
         this.title = title;
@@ -48,6 +48,15 @@ public class Ad {
         this.description = description;
         this.adImage = adImage;
         this.user = user;
+    }
+
+    public Ad(long id, String title, String description, AdImage adImage, User user, List<Category> categories) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.adImage = adImage;
+        this.user = user;
+        this.categories = categories;
     }
 
     // empty constructor takes care of the red Ad
@@ -94,5 +103,13 @@ public class Ad {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }
