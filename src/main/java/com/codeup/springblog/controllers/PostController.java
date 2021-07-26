@@ -2,6 +2,8 @@ package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.PostRepository;
+import com.codeup.springblog.models.User;
+import com.codeup.springblog.models.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +14,11 @@ import java.util.List;
 @Controller
 public class PostController {
     private final PostRepository postRepo;
+    private final UserRepository userRepo;
 
-    public PostController(PostRepository postRepo) {
+    public PostController(PostRepository postRepo, UserRepository userRepo) {
         this.postRepo = postRepo;
+        this.userRepo = userRepo;
     }
 
     // shows the posts (viewing posts)
@@ -29,6 +33,21 @@ public class PostController {
     public String findById(@PathVariable long id, Model model) {
         model.addAttribute("post", postRepo.findById(id));
         return "posts/show";
+    }
+
+    // shows the form to create form
+    @GetMapping("/posts/create")
+    public String showForm(Model model) {
+        return "posts/create";
+    }
+
+    // creates the post
+    @PostMapping("/posts/create")
+    public String createPost(@RequestParam String title, @RequestParam String body) {
+        User user = userRepo.getById(1L);
+        Post post = new Post(title, body, user);
+        postRepo.save(post);
+        return "redirect:/posts";
     }
 
     // deletes the posts

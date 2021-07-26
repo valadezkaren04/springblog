@@ -31,7 +31,7 @@ public class Ad {
     @JoinTable(
             name = "ads_categories",
             joinColumns = {@JoinColumn(name = "ad_id")},
-            inverseJoinColumns =  {@JoinColumn(name = "categori_id")}
+            inverseJoinColumns =  {@JoinColumn(name = "category_id")}
     )
     private List<Category> categories;
 
