@@ -18,11 +18,33 @@ public class Ad {
     @Column(nullable = false)
     private String description;
 
+    @OneToOne
+    private AdImage adImage;
+
+    @ManyToOne // binds the relations from OneToMany in user.java, making it a relationship
+    @JoinColumn(name="user_id")
+    private User user;
+
     // constructor
     public Ad(long id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
+    }
+
+    public Ad(long id, String title, String description, AdImage adImage) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.adImage = adImage;
+    }
+
+    public Ad(long id, String title, String description, AdImage adImage, User user) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.adImage = adImage;
+        this.user = user;
     }
 
     // empty constructor takes care of the red Ad
@@ -53,5 +75,21 @@ public class Ad {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public AdImage getAdImage() {
+        return adImage;
+    }
+
+    public void setAdImage(AdImage adImage) {
+        this.adImage = adImage;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
