@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/ads/create" th:action="@{/posts/create}" method="post" th:object="${post}">
+<form action="/posts/create" th:action="@{/posts/create}" method="post" th:object="${post}">
     Title:
     <input th:field="*{title}" />
     <br />

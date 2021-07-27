@@ -51,6 +51,7 @@ public class PostController {
 //        return "redirect:/posts";
 //    }
 
+    // refactored code with form model binding
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
         post.setUser(userRepo.getById(1L));
