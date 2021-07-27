@@ -2,17 +2,22 @@ package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Ad;
 import com.codeup.springblog.models.AdRepository;
+import com.codeup.springblog.models.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AdController {
     private final AdRepository adDao; // property being set to final ; cannot be changed
+    private final UserRepository userDao;
 
-    public AdController(AdRepository adDao) { // create method to include the repo and the dao
+    public AdController(AdRepository adDao, UserRepository userDao) { // create method to include the repo and the dao
         this.adDao = adDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/ads")
@@ -37,7 +42,14 @@ public class AdController {
 
     @GetMapping("/ads/create")
     public String createForm(Model model) {
-        model.addAttribute("ad", new Ad()); // passing it to the form ; when suer hits sumit, the fields will be saved tot eh database
+        model.addAttribute("ad", new Ad()); // passing it to the form ; when suer hits submit, the fields will be saved tot eh database
         return "ads/create";
+    }
+
+    @PostMapping("ads/create")
+    public String createAd(@ModelAttribute Ad ad) {
+        ad.setUser(userDao.getById(1L));
+        adDao.save(ad);
+        return "redirect:/ads";
     }
 }
