@@ -6,7 +6,18 @@
 </head>
 <body>
 </body>
-    <h2 th:text="${post.getTitle()}"></h2>
-    <p th:text="${post.getBody()}"></p>
+    <h2 th:text="${post.title}"></h2>
+    <p th:text="${post.body}"></p>
     <p th:text="${post.user.email}"></p>
+        <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="POST">
+            <!-- <input hidden th:value="${post.id}"> -->
+            <!-- @ : access the directories and files -->
+            <button type="submit">Delete</button>
+        </form>
+        <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="POST">
+            <input hidden th:value="${post.title}" name="title">
+            <input hidden th:value="${post.body}" name="body">
+            <button type="submit">Edit</button>
+        </form>
+    </form>
 </html>

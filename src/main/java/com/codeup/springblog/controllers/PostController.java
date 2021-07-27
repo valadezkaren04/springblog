@@ -66,27 +66,25 @@ public class PostController {
         return "redirect:/posts"; // better practice to return to the individual post page
     }
 
-    @GetMapping("/posts/edit/{id}")
-    public String editThePost(@PathVariable long id, Model model) {
-        model.addAttribute("post", postRepo.findById(id));
-        return "post/edit";
-    }
+//    @GetMapping("/posts/{id}/edit")
+//    public String editThePost(@PathVariable long id, Model model) {
+//        model.addAttribute("post", postRepo.findById(id));
+//        return "post/edit";
+//    }
 
     // allows you to edit your post
-    @PostMapping("/posts/{id}/edit")
+    @GetMapping("/posts/{id}/edit")
     public String postToEdit(@PathVariable long id, Model model) { // needs model b.c needs id in order to edit
-        model.addAttribute("post", postRepo.findById(id));
+        model.addAttribute("post", postRepo.getById(id));
         return "posts/edit";
     }
 
     // the post gets updated and displayed again
-    @PostMapping("/posts/edit/update/{id}")
-    public String editPost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
-        Post updatedPost = postRepo.getById(id);
-        updatedPost.setTitle(title);
-        updatedPost.setBody(body);
-        postRepo.save(updatedPost);
-        return "redirect:/posts";
+    @PostMapping("/posts/{id}/edit")
+    public String editPost(@PathVariable long id, @ModelAttribute Post post) {
+       post.setUser(userRepo.getById(1L));
+       postRepo.save(post);
+       return "redirect:/posts/" + id;
     }
 }
 
