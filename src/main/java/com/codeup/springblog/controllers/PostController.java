@@ -38,14 +38,22 @@ public class PostController {
     // shows the form to create form
     @GetMapping("/posts/create")
     public String showForm(Model model) {
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
     // creates the post
+//    @PostMapping("/posts/create")
+//    public String createPost(@RequestParam String title, @RequestParam String body) {
+//        User user = userRepo.getById(1L);
+//        Post post = new Post(title, body, user);
+//        postRepo.save(post);
+//        return "redirect:/posts";
+//    }
+
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam String title, @RequestParam String body) {
-        User user = userRepo.getById(1L);
-        Post post = new Post(title, body, user);
+    public String createPost(@ModelAttribute Post post) {
+        post.setUser(userRepo.getById(1L));
         postRepo.save(post);
         return "redirect:/posts";
     }
@@ -64,7 +72,7 @@ public class PostController {
     }
 
     // allows you to edit your post
-    @PostMapping("/posts/edit/{id}")
+    @PostMapping("/posts/{id}/edit")
     public String postToEdit(@PathVariable long id, Model model) { // needs model b.c needs id in order to edit
         model.addAttribute("post", postRepo.findById(id));
         return "posts/edit";
