@@ -34,4 +34,10 @@ public class AdController {
         model.addAttribute("ad", ad); // gets the information
         return "ads/show";
     }
+
+    @GetMapping("/ads/create")
+    public String createForm(Model model) {
+        model.addAttribute("ad", new Ad()); // passing it to the form ; when suer hits sumit, the fields will be saved tot eh database
+        return "ads/create";
+    }
 }
