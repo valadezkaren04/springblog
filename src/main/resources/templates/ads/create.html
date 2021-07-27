@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create form</title>
+</head>
+<body>
+    <form action="/ads/create" th:action="@{ads/create}" method="post" th:object="${ad}">
+        Title:
+       <input th:field="*{title}" />   <!-- * selection expression to choose the object -->
+        <br />
+        Description:
+        <textarea th:field="*{description}" />
+        <br />
+        <input type="submit" />
+    </form>
+</body>
+</html>
