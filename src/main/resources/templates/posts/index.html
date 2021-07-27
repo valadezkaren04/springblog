@@ -16,7 +16,7 @@
             <!-- @ : access the directories and files -->
             <button type="submit">Delete</button>
         </form>
-        <form th:action="@{/posts/edit/{id}(id=${post.id})}" method="POST">
+        <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="POST">
             <input hidden th:value="${post.title}" name="title">
             <input hidden th:value="${post.body}" name="body">
             <button type="submit">Edit</button>

@@ -88,6 +88,9 @@ public class PostController {
     }
 }
 
+
+
+
 //    private List<Post> posts = new ArrayList<>();
 //
 //    @GetMapping("/posts")
