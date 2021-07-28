@@ -16,7 +16,7 @@ import java.util.List;
 public class PostController {
     private final PostRepository postRepo;
     private final UserRepository userRepo;
-    private final EmailService emailService;
+    private final EmailService emailService; // needs to be added in order for EmailService to work
 
     public PostController(PostRepository postRepo, UserRepository userRepo, EmailService emailService) {
         this.postRepo = postRepo;
