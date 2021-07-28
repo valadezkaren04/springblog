@@ -38,7 +38,7 @@ public class HelloController {
     //name is connected to the join.html ; Model passes it into the html
     public String joinCohort(@RequestParam(name = "cohort") String cohort, Model model) {
         model.addAttribute("cohort", "Welcome to " + cohort + "! n.n");
-        emailService.prepareAndSend("valadez14k@gmail.com", "Testing email service", "Hello! Welcome to " + cohort + " have an amazing day! n.n");
+//        emailService.prepareAndSend("valadez14k@gmail.com", "Testing email service", "Hello! Welcome to " + cohort + " have an amazing day! n.n");
         return "join";
     }
 

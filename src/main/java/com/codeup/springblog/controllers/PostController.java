@@ -59,6 +59,7 @@ public class PostController {
     public String createPost(@ModelAttribute Post post) {
         post.setUser(userRepo.getById(1L));
         postRepo.save(post);
+        emailService.prepareAndSend(post, "Here is the latest post you have created: " + post.getTitle(), post.getBody());
         return "redirect:/posts";
     }
 
