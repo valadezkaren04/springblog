@@ -35,7 +35,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String findById(@PathVariable long id, Model model) {
         model.addAttribute("post", postRepo.findById(id));
-        return "posts/show"
+        return "posts/show";
     }
 
     // shows the form to create form
