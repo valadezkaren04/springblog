@@ -21,7 +21,7 @@ public class EmailService {
     public void prepareAndSend(Post post, String subject, String body) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
-        msg.setTo(post.getUser().getEmail());
+        msg.setTo(post.getUser().getEmail()); // changes from 'to' to post so the post can be sent instead
         msg.setSubject(subject);
         msg.setText(body);
 
