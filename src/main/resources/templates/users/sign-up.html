@@ -16,7 +16,13 @@
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
 
+    <input id="password-confirm" name="password-confirm" type="password" class="validate" />
+    <label for="password-confirm">Confirm Password</label>
+    <span class="helper-text" data-error="Your passwords don't match!" data-success="Fantastic"></span>
+
     <input value="Sign me up!" type="submit" />
 </form>
+<script>
+</script>
 </body>
 </html>

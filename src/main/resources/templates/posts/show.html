@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,7 +11,7 @@
     <h2 th:text="${post.title}"></h2>
     <p th:text="${post.body}"></p>
     <p th:text="${post.user.email}"></p>
-        <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="POST">
+        <form th:action="@{/posts/delete/{id}(id = ${post.id})}" method="POST">
             <!-- <input hidden th:value="${post.id}"> -->
             <!-- @ : access the directories and files -->
             <button type="submit">Delete Post</button>

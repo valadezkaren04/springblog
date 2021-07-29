@@ -1,9 +1,11 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +31,15 @@ public class PostController {
 
     // finds a post by the ID
     @GetMapping("/posts/{id}")
-    public String findById(@PathVariable long id, Model model) {
-        model.addAttribute("post", postRepo.findById(id));
+    public String singlePost(@PathVariable long id, Model model) {
+        Post post = postRepo.getById(id);
+        boolean isPostOwner = false;
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            isPostOwner = currentUser.getId() == post.getUser().getId();
+        }
+        model.addAttribute("post", post);
+        model.addAttribute("isPostOwner", isPostOwner);
         return "posts/show";
     }
 
@@ -53,7 +62,7 @@ public class PostController {
     // refactored code with form model binding
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
-        post.setUser(userRepo.getById(1L));
+        post.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()); // logged in user
         postRepo.save(post);
         emailService.prepareAndSend(post, "Here is the latest post you have created: " + post.getTitle(), post.getBody()); // connected to the EmailService class
         return "redirect:/posts";
@@ -62,7 +71,12 @@ public class PostController {
     // deletes the posts
     @PostMapping("/posts/delete/{id}")
     public String deleteById(@PathVariable long id) {
-        postRepo.deleteById(id);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post post = postRepo.getById(id);
+        if (currentUser.getId() == post.getUser().getId()) {
+            postRepo.delete(post);
+        }
+//        postRepo.deleteById(id);
         return "redirect:/posts"; // better practice to return to the individual post page
     }
 
@@ -75,14 +89,21 @@ public class PostController {
     // allows you to edit your post
     @GetMapping("/posts/{id}/edit")
     public String postToEdit(@PathVariable long id, Model model) { // needs model b.c needs id in order to edit
-        model.addAttribute("post", postRepo.getById(id));
-        return "posts/edit";
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post post = postRepo.getById(id);
+        if (currentUser.getId() == post.getUser().getId()) {
+            model.addAttribute("post", post);
+            return "posts/edit";
+        } else {
+            return "redirect:/posts/" + id;
+        }
     }
 
     // the post gets updated and displayed again
     @PostMapping("/posts/{id}/edit")
     public String editPost(@PathVariable long id, @ModelAttribute Post post) {
-       post.setUser(userRepo.getById(1L));
+       User dbUser = postRepo.findById(post.getId()).getUser(); // access to the db
+       post.setUser(dbUser);
        postRepo.save(post);
        return "redirect:/posts/" + id;
     }
