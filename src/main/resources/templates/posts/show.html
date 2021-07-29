@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <th:block th:replace="partials/styles.html  :: styles"></th:block>
-    </div>
-</head>
+<head th:replace="partials/styles :: styles"></head>
 <body>
-<th:block th:include="partials/navbar.html :: navbar"></th:block>
+<nav th:replace="partials/navbar :: navbar"></nav>
     <h2 th:text="${post.title}"></h2>
     <p th:text="${post.body}"></p>
-    <p th:text="${post.user.email}"></p>
+    <p>Post created by: <span th:text="${post.user.email}"></span></p>
         <form th:action="@{/posts/delete/{id}(id = ${post.id})}" method="POST">
             <!-- <input hidden th:value="${post.id}"> -->
             <!-- @ : access the directories and files -->
@@ -22,6 +17,6 @@
             <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit Post</a>
         </a>
 
-<th:block th:include="partials/scripts.html  :: scripts"></th:block>
+<section th:include="partials/scripts :: scripts"></section>
 </body>
 </html>
