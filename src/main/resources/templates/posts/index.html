@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Viewing the posts</title>
+    <th:block th:replace="partials/styles  :: styles"></th:block>
 </head>
 <body>
 <h1></h1>
-
+<th:block th:replace="partials/navbar :: navbar"></th:block>
 <div th:each="post: ${posts}">
     <th:block>
         <h4 th:text="${post.title}"></h4>
@@ -24,6 +25,7 @@
     </th:block>
 
 </div>
+<th:block th:include="partials/scripts  :: scripts"></th:block>
 </body>
 </html>
 
