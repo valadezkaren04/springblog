@@ -14,17 +14,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Posts</a>
+                    <a class="nav-link active" aria-current="page" href="/posts">Posts</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Create A Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Login</a>
+                    <a class="nav-link active" aria-current="page" href="/login">Log In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Logout</a>
+                    <a class="nav-link active" aria-current="page" href="/register">Register</a>
                 </li>
+                <form th:action="@{/logout}" th:method="post" id="form1">
+                    <a onclick="document.getElementById('form1').submit();" class="nav-link active">Log Out</a>
+                </form>
             </ul>
         </div>
     </div>
