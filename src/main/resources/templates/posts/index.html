@@ -20,11 +20,13 @@
                     <!-- @ : access the directories and files -->
                     <button class="btn" type="submit">Delete</button>
                 </form>
-                <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="POST">
-                    <input hidden th:value="${post.title}" name="title">
-                    <input hidden th:value="${post.body}" name="body">
-                <button class="btn" type="submit">Edit</button>
-                </form>
+                 <div class="card">
+                    <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="POST">
+                        <input hidden th:value="${post.title}" name="title">
+                        <input hidden th:value="${post.body}" name="body">
+                    <button class="btn" type="submit">Edit</button>
+                    </form>
+                 </div>
             </th:block>
         </div>
     </div>
