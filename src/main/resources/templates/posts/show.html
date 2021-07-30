@@ -3,19 +3,25 @@
 <head th:replace="partials/styles :: styles"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-    <h2 th:text="${post.title}"></h2>
-    <p th:text="${post.body}"></p>
-    <p>Post created by: <span th:text="${post.user.email}"></span></p>
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title" th:text="${post.title}"></h2>
+        <p class="card-text" th:text="${post.body}"></p>
+        <p>Post created by: <span th:text="${post.user.email}"></span></p>
         <form th:action="@{/posts/delete/{id}(id = ${post.id})}" method="POST">
             <!-- <input hidden th:value="${post.id}"> -->
             <!-- @ : access the directories and files -->
-            <button type="submit">Delete Post</button>
+            <button class="btn" type="submit">Delete Post</button>
         </form>
         <a th:action="@{/posts/{id}/edit(id=${post.id})}" method="POST">
             <input hidden th:value="${post.title}" name="title">
             <input hidden th:value="${post.body}" name="body">
-            <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit Post</a>
+            <a class="btn" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit Post</a>
         </a>
+    </div>
+</div>
+
+
 
 <section th:include="partials/scripts :: scripts"></section>
 </body>
