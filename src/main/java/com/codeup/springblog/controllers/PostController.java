@@ -92,7 +92,8 @@ public class PostController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postRepo.getById(id);
         if (currentUser.getId() == post.getUser().getId()) {
-            model.addAttribute("post", post);
+            post.setUser(currentUser);
+            postRepo.save(post);
             return "posts/edit";
         } else {
             return "redirect:/posts/" + id;
