@@ -62,3 +62,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         ;
     }
 }
+
+
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .formLogin()
+//                .loginPage("/login")
+//                .defaultSuccessUrl("/posts")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .logoutSuccessUrl("/login?logout")
+//                .permitAll()
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers(
+//                        "/",
+//                        "/ads",
+//                        "/ads/{id}",
+//                        "/posts",
+//                        "/posts/{id}",
+//                        "/register",
+//                        "/js/**", // had to add this to not restrict scripts
+//                        "/css/**", // had to add this to not restrict stylesheets
+//                        "/img/**") // had to add this to not restrict images
+//                .permitAll()
+//                .anyRequest().authenticated();
+//    }
