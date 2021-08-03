@@ -119,7 +119,6 @@ public class PostIntegrationTests {
 
     @Test
     public void testPostsIndex() throws Exception {
-        List<Post>
         Post existingPost = postRepo.findAll().get(0);
 
         // Makes a Get request to /ads and verifies that we get some of the static text of the ads/index.html template and at least the title from the first Ad is present in the template.
@@ -135,7 +134,7 @@ public class PostIntegrationTests {
     @Test
     public void testEditPost() throws Exception {
         // Gets the first Ad for tests purposes
-        Post existingPost = postRepo.findByUsername("testUser").getPosts.get(0);
+        Post existingPost = postRepo.findAll().get(4);
 
         // Makes a Post request to /ads/{id}/edit and expect a redirection to the Ad show page
         this.mvc.perform(
@@ -155,23 +154,23 @@ public class PostIntegrationTests {
 
     // Delete. For this test we will create an Ad and destroy it to verify if it's gone and redirects back to the ("/ads") URL.
     @Test
-    public void testDeleteAd() throws Exception {
+    public void testDeletePost() throws Exception {
         // Creates a test Ad to be deleted
         this.mvc.perform(
-                post("/ads/create").with(csrf())
+                post("/posts/create").with(csrf())
                         .session((MockHttpSession) httpSession)
-                        .param("title", "ad to be deleted")
-                        .param("description", "won't last long"))
+                        .param("title", "post to be deleted")
+                        .param("body", "won't last long"))
                 .andExpect(status().is3xxRedirection());
 
         // Get the recent Ad that matches the title
-        Post existingPost = postRepo.findByTitle("ad to be deleted");
+        Post existingPost = postRepo.findByTitle("post to be deleted");
 
         // Makes a Post request to /ads/{id}/delete and expect a redirection to the Ads index
         this.mvc.perform(
-                post("/ads/" + existingAd.getId() + "/delete").with(csrf())
+                post("/posts/" + existingPost.getId() + "/delete").with(csrf())
                         .session((MockHttpSession) httpSession)
-                        .param("id", String.valueOf(existingAd.getId())))
+                        .param("id", String.valueOf(existingPost.getId())))
                 .andExpect(status().is3xxRedirection());
     }
 }
