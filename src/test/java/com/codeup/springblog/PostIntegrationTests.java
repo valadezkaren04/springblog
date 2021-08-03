@@ -63,7 +63,7 @@ public class PostIntegrationTests {
                 .param("username", "testUser")
                 .param("password", "pass"))
                 .andExpect(status().is(HttpStatus.FOUND.value()))
-                .andExpect(redirectedUrl("/ads"))
+                .andExpect(redirectedUrl("/posts"))
                 .andReturn()
                 .getRequest()
                 .getSession();
@@ -86,10 +86,10 @@ public class PostIntegrationTests {
 
     //**** Testing the Ads CRUD Functionality ****
     @Test
-    public void testCreateAd() throws Exception {
+    public void testCreatePost() throws Exception {
         // Makes a Post request to /ads/create and expect a redirection to the Ad
         this.mvc.perform(
-                post("/ads/create").with(csrf())
+                post("/posts/create").with(csrf())
                         .session((MockHttpSession) httpSession)
                         // Add all the required parameters to your request like this
                         .param("title", "test")
