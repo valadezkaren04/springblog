@@ -2,8 +2,10 @@ package com.codeup.springblog;
 
 import com.codeup.springblog.SpringblogApplication;
 import com.codeup.springblog.models.Ad;
+import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.AdRepository;
+import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,10 +38,10 @@ public class PostIntegrationTests {
     private MockMvc mvc;
 
     @Autowired
-    UserRepository userDao;
+    UserRepository userRepo;
 
     @Autowired
-    AdRepository adsDao;
+    PostRepository postRepo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -47,7 +49,7 @@ public class PostIntegrationTests {
     @Before
     public void setup() throws Exception {
 
-        testUser = userDao.findByUsername("testUser");
+        testUser = userRepo.findByUsername("testUser");
 
         // Creates the test user if not exists
         if(testUser == null){
@@ -55,7 +57,7 @@ public class PostIntegrationTests {
             newUser.setUsername("testUser");
             newUser.setPassword(passwordEncoder.encode("pass"));
             newUser.setEmail("testUser@codeup.com");
-            testUser = userDao.save(newUser);
+            testUser = userRepo.save(newUser);
         }
 
         // Throws a Post request to /login and expect a redirection to the Ads index page after being logged in
@@ -93,7 +95,7 @@ public class PostIntegrationTests {
                         .session((MockHttpSession) httpSession)
                         // Add all the required parameters to your request like this
                         .param("title", "test")
-                        .param("description", "for sale"))
+                        .param("body", "lorem ipsum"))
                 .andExpect(status().is3xxRedirection());
     }
 
@@ -102,15 +104,15 @@ public class PostIntegrationTests {
 //It's always a good idea to verify the return status with: status().isOk().
 //You can use content().string(containsString()) to search for pieces of text you are expecting in the page.
     @Test
-    public void testShowAd() throws Exception {
+    public void testShowPost() throws Exception {
 
-        Ad existingAd = adsDao.findAll().get(0);
+        Post existingPost = postRepo.findAll().get(0);
 
         // Makes a Get request to /ads/{id} and expect a redirection to the Ad show page
-        this.mvc.perform(get("/ads/" + existingAd.getId()))
+        this.mvc.perform(get("/posts/" + existingPost.getId()))
                 .andExpect(status().isOk())
                 // Test the dynamic content of the page
-                .andExpect(content().string(containsString(existingAd.getDescription())));
+                .andExpect(content().string(containsString(existingPost.getBody())));
     }
 
     @Test
