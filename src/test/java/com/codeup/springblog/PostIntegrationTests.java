@@ -164,7 +164,7 @@ public class PostIntegrationTests {
                 .andExpect(status().is3xxRedirection());
 
         // Get the recent Ad that matches the title
-        Post existingPost = postRepo.findByTitle("post to be deleted");
+
 
         // Makes a Post request to /ads/{id}/delete and expect a redirection to the Ads index
         this.mvc.perform(
