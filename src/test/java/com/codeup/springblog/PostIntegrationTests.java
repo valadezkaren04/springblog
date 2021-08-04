@@ -134,7 +134,7 @@ public class PostIntegrationTests {
     @Test
     public void testEditPost() throws Exception {
         // Gets the first Ad for tests purposes
-        Post existingPost = postRepo.findAll().get(4);
+
 
         // Makes a Post request to /ads/{id}/edit and expect a redirection to the Ad show page
         this.mvc.perform(
