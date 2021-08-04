@@ -137,7 +137,7 @@ public class PostIntegrationTests {
         Post existingPost = postRepo.findAll().get(4);
 
         // Makes a Post request to /ads/{id}/edit and expect a redirection to the Ad show page
-
+        this.mvc.perform(
                 post("/posts/" + existingPost.getId() + "/edit").with(csrf())
                         .session((MockHttpSession) httpSession)
                         .param("title", "edited title")
