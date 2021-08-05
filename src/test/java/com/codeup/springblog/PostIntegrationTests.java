@@ -101,7 +101,10 @@ public class PostIntegrationTests {
                 .andExpect(status().is3xxRedirection());
     }
 
-
+    //    Read. In these tests we are going to check if the ads index ("/ads") and show ad page ("/ads/{id}") render correctly.
+//Once an Ad has been created, we will find it and test if we can render it in the view.
+//It's always a good idea to verify the return status with: status().isOk().
+//You can use content().string(containsString()) to search for pieces of text you are expecting in the page.
     @Test
     public void testShowPost() throws Exception {
 
