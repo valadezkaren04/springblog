@@ -105,7 +105,17 @@ public class PostIntegrationTests {
 //Once an Ad has been created, we will find it and test if we can render it in the view.
 //It's always a good idea to verify the return status with: status().isOk().
 //You can use content().string(containsString()) to search for pieces of text you are expecting in the page.
+    @Test
+    public void testShowPost() throws Exception {
 
+        Post existingPost = postRepo.findAll().get(0);
+
+        // Makes a Get request to /ads/{id} and expect a redirection to the Ad show page
+        this.mvc.perform(get("/posts/" + existingPost.getId()))
+                .andExpect(status().isOk())
+                // Test the dynamic content of the page
+                .andExpect(content().string(containsString(existingPost.getBody())));
+    }
 
     @Test
     public void testPostsIndex() throws Exception {
