@@ -86,6 +86,7 @@ public class PostController {
 //        return "post/edit";
 //    }
 
+    // needs refactoring
     // allows you to edit your post
     @GetMapping("/posts/{id}/edit")
     public String postToEdit(@PathVariable long id, Model model) { // needs model b.c needs id in order to edit
