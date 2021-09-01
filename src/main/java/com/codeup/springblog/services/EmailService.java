@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service("mailService")
 public class EmailService {
-    // later on change it to send
+    // later on change it to send grid to
     @Autowired
     public JavaMailSender emailSender;
 
