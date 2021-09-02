@@ -112,6 +112,7 @@ public class PostController {
 }
 
 // what to do:
+// blog / profile
 
 
 
