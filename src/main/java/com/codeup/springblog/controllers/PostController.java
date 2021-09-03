@@ -114,7 +114,7 @@ public class PostController {
 // what to do:
 // blog / profile
 // konami code again
-// also
+// also rebuild springblog
 
 
 //    private List<Post> posts = new ArrayList<>();
