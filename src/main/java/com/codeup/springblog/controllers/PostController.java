@@ -114,6 +114,7 @@ public class PostController {
 // what to do:
 // blog / profile
 // konami code again
+// also
 
 
 //    private List<Post> posts = new ArrayList<>();
