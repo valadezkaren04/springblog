@@ -115,6 +115,7 @@ public class PostController {
 // blog / profile
 // konami code again
 // also rebuild springblog
+// rebuild weather forecast
 
 
 
