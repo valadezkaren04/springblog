@@ -111,7 +111,12 @@ public class PostController {
     }
 }
 
-
+// what to do:
+// blog / profile
+// konami code again
+// also rebuild springblog
+// rebuild weather forecast
+// find projects
 
 
 //    private List<Post> posts = new ArrayList<>();
